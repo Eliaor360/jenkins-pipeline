@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo '======= Test stage ======='
                 echo "Pipeline Name: ${JOB_NAME}"
-                echo "Build Number: ${BUILD_NUMER}"
+                echo "Build Number: ${BUILD_NUMBER}"
             }
         }
 
