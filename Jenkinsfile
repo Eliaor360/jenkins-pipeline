@@ -2,30 +2,29 @@ pipeline {
     agent any
 
     environment {
-        APP_VERSION = '1.0'
-        APP_NAME = 'my-app'
-        DOCKER_REPO = 'my-docker-repo'
+        FILE_TO_TEST = 'app.txt'
     }
 
     stages {
         stage('Build') {
             steps {
                 echo '======= Build stage ======='
-                echo "App Name: ${APP_NAME}, Version: ${APP_VERSION}, Docker Repo: ${DOCKER_REPO}"
+                sh 'echo "Hello from V3.5" > app.txt'
             }
         }
 
         stage('Test') {
             steps {
                 echo '======= Test stage ======='
-                echo "Pipeline Name: ${JOB_NAME}"
-                echo "Build Number: ${BUILD_NUMBER}"
+                sh 'python3 search_word.py Hello'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo '======= Deploy stage ======='
+                sh 'mkdir -p deploy'
+                sh 'cp app.txt deploy/'
             }
         }
     }
